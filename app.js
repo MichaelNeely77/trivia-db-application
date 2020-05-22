@@ -5,7 +5,7 @@ btn.addEventListener('click', nextItem);
 function nextItem() {
     var url = 'https://opentdb.com/api.php?amount=10';
     requestAJAX(url, function(data) {
-        console.log(data);
+        console.log(data.results);
     });
 }
 
