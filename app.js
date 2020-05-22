@@ -14,13 +14,30 @@ function nextItem() {
         html += '<div class="question">'+obj.question+'</div></div>';
         html += '<div></div>';
         output.innerHTML = html;
-
+        questionBuilder(obj.correct_answer, obj.incorrect_answers);
     });
 }
 
-function questionBuilder() {
-    
+
+function sendAnswer() {
+    console.log(event.target.getAttribute('data-cor'));
 }
+
+function questionBuilder(cor, incor) {
+    var holder = incor;
+    holder.push(cor);
+    holder.sort();
+    var selAnswer = document.getElementById('selAnswers');
+    selAnswer.innerHTML = '';
+        for(var x=0;x<holder.length; x++){
+            var el = document.createElement('div');
+            var checker = holder[x] == cor ? true : false;
+            el.setAttribute('data-cor', checker);
+            el.innerHTML = holder[x];
+            el.addEventListener('click',sendAnswer);
+            selAnswer.appendChild(el);
+        }
+    }
 
 function requestAJAX(url,callback) {
     var xhr = new XMLHttpRequest;
