@@ -20,7 +20,13 @@ function nextItem() {
 
 
 function sendAnswer() {
-    console.log(event.target.getAttribute('data-cor'));
+    var res = event.target.getAttribute('data-cor');
+    if(res == 'true') {
+        answers.correct++;
+    } else {
+        answers.wrong++;
+    }
+    document.getElementById('score').innerHTML = 'Correct '+answers.correct+' Wrong: '+answers.wrong;
 }
 
 function questionBuilder(cor, incor) {
